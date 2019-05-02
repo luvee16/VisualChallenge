@@ -1,23 +1,378 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="VisualChallenge.VisualChallengePage"
              Shell.NavBarIsVisible="True"
              BackgroundColor="White"
-             Title="Visual Challenge"
-             >
+             Title="Visual Challenge">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="IconFontFamily"
+                        iOS="Font Awesome 5 Free" 
+                        Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome"/>
+            
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="Primary">#1A78C2</Color>
+            <Color x:Key="Secondary">#135A91</Color>
+            <Color x:Key="Tertiary">#092D48</Color>
+            
+            <x:Double x:Key="HeaderSize">24</x:Double>
+            <x:Double x:Key="LargeSize">16</x:Double>
+            <x:Double x:Key="MediumSize">14</x:Double>
+            <x:Double x:Key="SmallSize">12</x:Double>
+            
+            <Style x:Key="HeaderText" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource HeaderSize}"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="0,20,0,5"/>
+            </Style>
+            
+            <Style x:Key="HeaderFrameText" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallSize}"/>
+            </Style>
+            
+            <Style x:Key="HeaderFrameIcon" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource IconFontFamily}"/>
+            </Style>
+            
+            <Style x:Key="ProfileSummaryText" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
+            </Style>
+            
+            <Style x:Key="ProfileSummaryMemberNameLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+            <Style x:Key="ProfileSummaryMemberLocationLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
+            </Style>
+            
+            <Style x:Key="ProfileSummaryMemberSinceLabel" TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallSize}"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+            </Style>
+            
+            <Style x:Key="ProfileSummaryStackLayout" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="2"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="SliderItemLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            </Style>
+            
+            <Style x:Key="SliderItemSubLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallSize}"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            </Style>
+            
+            <Style x:Key="RecentItemLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            </Style>
+            
+            <Style x:Key="RecentItemSubLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}"/>
+                <Setter Property="MaxLines" Value="1"/>
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+            </Style>
+            
+            <Style x:Key="HeaderFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+            
+            <Style x:Key="ProfileImageFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HasShadow" Value="false"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HeightRequest" Value="70"/>
+            </Style>
+            
+            <Style x:Key="SliderItemFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
+            
+            <Style x:Key="SliderItemImageFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HasShadow" Value="false"/>
+                <Setter Property="WidthRequest" Value="140"/>
+                <Setter Property="HeightRequest" Value="140"/>
+            </Style>
+            
+            <Style x:Key="SliderItemTextFrame" TargetType="Frame">
+                <Setter Property="Opacity" Value="0.5"/>
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            
+            <Style x:Key="SliderItemDescStackLayout" TargetType="StackLayout">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Spacing" Value="0"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+            </Style>
+            
+            <Style x:Key="HistorySliderItemFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="WidthRequest" Value="250"/>
+                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
+            
+            <Style x:Key="SliderScrollView" TargetType="ScrollView">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalScrollBarVisibility" Value="Never"/>
+            </Style>
+            
+            <Style x:Key="SliderScrollStackLayout" TargetType="StackLayout">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Spacing" Value="10"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 	<!-- If you decide to change out the flexlayout leave the scroll view here
 		 Currently there's a bug in shell that will set margins wrong if the content is not in a scrollview
 	-->
 	<ScrollView>
-		<FlexLayout Margin="20" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
+		<!--<FlexLayout Margin="20" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
 
 			<Label Text="Start Here" FontSize="24" HorizontalTextAlignment="Center"/>
 
 			<Button Text="Read More About Visual" Clicked="Button_Clicked" />
 
-		</FlexLayout>
+		</FlexLayout>-->
+        <StackLayout Padding="20">
+            <Frame Grid.Column="0" Style="{StaticResource HeaderFrame}" BackgroundColor="{StaticResource NavigationPrimary}">
+                <StackLayout Spacing="10">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Frame Grid.Column="0" Style="{StaticResource ProfileImageFrame}">
+                            <Image Source="me.jpg" Aspect="AspectFill"/>
+                        </Frame>
+                        
+                        <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                            <Label Text="Luvendran Veeramohan" Style="{StaticResource ProfileSummaryMemberNameLabel}"/>
+                            <Label Text="Selangor, Malaysia" Style="{StaticResource ProfileSummaryMemberLocationLabel}"/>
+                            <Label Text="Member since: Jan 2019" Style="{StaticResource ProfileSummaryMemberSinceLabel}"/>
+                        </StackLayout>
+                    </Grid>
+                    
+                    <Grid ColumnSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackLayout Grid.Column="0" Style="{StaticResource ProfileSummaryStackLayout}">
+                            <Label Text="88" Style="{StaticResource ProfileSummaryText}"/>
+                            <Label Text="&#xf004;" Style="{StaticResource HeaderFrameIcon}"/>
+                        </StackLayout>
+                        
+                        <StackLayout Grid.Column="1" Style="{StaticResource ProfileSummaryStackLayout}">
+                            <Label Text="169" Style="{StaticResource ProfileSummaryText}"/>
+                            <Label Text="&#xf5c1;" Style="{StaticResource HeaderFrameIcon}"/>
+                        </StackLayout>
+                        
+                        <StackLayout Grid.Column="2" Style="{StaticResource ProfileSummaryStackLayout}">
+                            <Label Text="5" Style="{StaticResource ProfileSummaryText}"/>
+                            <Label Text="&#xf005;" Style="{StaticResource HeaderFrameIcon}"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            
+            <Label Text="Explore" Style="{StaticResource HeaderText}"/>
+            
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Frame Grid.Column="0" Style="{StaticResource HeaderFrame}" BackgroundColor="{StaticResource Primary}">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Text="&#xf594;" Style="{StaticResource HeaderFrameIcon}"/>
+                        
+                        <Label Grid.Column="1" Text="Hotels" Style="{StaticResource HeaderFrameText}"/>
+                    </Grid>
+                </Frame>
+                
+                <Frame Grid.Column="1" Style="{StaticResource HeaderFrame}" BackgroundColor="{StaticResource Secondary}">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Text="&#xf015;" Style="{StaticResource HeaderFrameIcon}"/>
+                        
+                        <Label Grid.Column="1" Text="Homestays" Style="{StaticResource HeaderFrameText}"/>
+                    </Grid>
+                </Frame>
+                
+                <Frame Grid.Column="2" Style="{StaticResource HeaderFrame}" BackgroundColor="{StaticResource Tertiary}">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Text="&#xf6ec;" Style="{StaticResource HeaderFrameIcon}"/>
+                        
+                        <Label Grid.Column="1" Text="Backpackers" Style="{StaticResource HeaderFrameText}"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+            
+            <Label Text="Top Destinations" Style="{StaticResource HeaderText}"/>
+            
+            <ScrollView Style="{StaticResource SliderScrollView}">
+                <StackLayout Style="{StaticResource SliderScrollStackLayout}">
+                    <Frame Style="{StaticResource SliderItemFrame}">
+                        <Grid>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Frame Grid.RowSpan="2" Style="{StaticResource SliderItemImageFrame}">
+                                    <Image Source="https://s-ec.bstatic.com/images/hotel/max1024x768/111/111207121.jpg" Aspect="AspectFill"/>
+                                </Frame>
+                                
+                                <Frame Grid.Row="1" Style="{StaticResource SliderItemTextFrame}"/>
+                            </Grid>
+                            
+                            <StackLayout Style="{StaticResource SliderItemDescStackLayout}">
+                                <Label Text="Kuala Lumpur" Style="{StaticResource SliderItemLabel}"/>
+                                <Label Text="Malaysia" Style="{StaticResource SliderItemSubLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    
+                    <Frame Style="{StaticResource SliderItemFrame}">
+                        <Grid>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Frame Grid.RowSpan="2" Style="{StaticResource SliderItemImageFrame}">
+                                    <Image Source="http://www.sunwayreit.com/wp-content/uploads/2017/03/pyramid-mall05.jpg" Aspect="AspectFill"/>
+                                </Frame>
+                                
+                                <Frame Grid.Row="1" Style="{StaticResource SliderItemTextFrame}"/>
+                            </Grid>
+                            
+                            <StackLayout Style="{StaticResource SliderItemDescStackLayout}">
+                                <Label Text="Selangor" Style="{StaticResource SliderItemLabel}"/>
+                                <Label Text="Malaysia" Style="{StaticResource SliderItemSubLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    
+                    <Frame Style="{StaticResource SliderItemFrame}">
+                        <Grid>
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Frame Grid.RowSpan="2" Style="{StaticResource SliderItemImageFrame}">
+                                    <Image Source="http://www.expressbusmalaysia.com/wp-content/uploads/2012/05/san_bao_dong_Ipoh_A.jpg" Aspect="AspectFill"/>
+                                </Frame>
+                                
+                                <Frame Grid.Row="1" Style="{StaticResource SliderItemTextFrame}"/>
+                            </Grid>
+                            
+                            <StackLayout Style="{StaticResource SliderItemDescStackLayout}">
+                                <Label Text="Perak" Style="{StaticResource SliderItemLabel}"/>
+                                <Label Text="Malaysia" Style="{StaticResource SliderItemSubLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            
+            <Label Text="Viewed Recently" Style="{StaticResource HeaderText}"/>
+            
+            <ScrollView Style="{StaticResource SliderScrollView}">
+                <StackLayout Style="{StaticResource SliderScrollStackLayout}">
+                    <Frame Style="{StaticResource HistorySliderItemFrame}">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Frame Style="{StaticResource SliderItemImageFrame}">
+                                <Image Source="http://www.theartofbusinesstravel.com/wp-content/uploads/2018/08/W-Hotel-Kuala-Lumpur-620x348.jpg" Aspect="AspectFill"/>
+                            </Frame>
+                            
+                            <StackLayout Grid.Row="1" Style="{StaticResource SliderItemDescStackLayout}">
+                                <Label Text="W Hotel Kuala Lumpur" Style="{StaticResource RecentItemLabel}"/>
+                                <Label Text="From MYR 656" Style="{StaticResource RecentItemSubLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    
+                    <Frame Style="{StaticResource HistorySliderItemFrame}">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Frame Style="{StaticResource SliderItemImageFrame}">
+                                <Image Source="http://www.klexpatmalaysia.com/wp-content/uploads/2018/06/malaysia-hotel-0-933x445.jpg" Aspect="AspectFill"/>
+                            </Frame>
+                            
+                            <StackLayout Grid.Row="1" Style="{StaticResource SliderItemDescStackLayout}">
+                                <Label Text="Sunway Resort Hotel &amp; Spa" Style="{StaticResource RecentItemLabel}"/>
+                                <Label Text="From MYR 388" Style="{StaticResource RecentItemSubLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
 	</ScrollView>
 </ContentPage>

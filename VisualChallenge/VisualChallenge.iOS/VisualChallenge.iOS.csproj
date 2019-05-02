@@ -124,6 +124,9 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <BundleResource Include="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
+    <BundleResource Include="Resources\me.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -143,5 +146,8 @@
       <Project>{DF343C5B-66F1-4EF5-B721-6246D8F1DC39}</Project>
       <Name>VisualChallenge</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 </Project>
